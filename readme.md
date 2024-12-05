@@ -113,7 +113,7 @@ if you are using `lazy.nvim`:
 
 ```
 {
-	"aidancz/eolmark",
+	"aidancz/eolmark.nvim",
 	lazy = false,
 	config = function()
 		require("eolmark").setup()
