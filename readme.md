@@ -8,7 +8,7 @@ i prefer using block cursor, but i often find it tricky to distinguish whether t
 
 the `listchars` option is a great solution, but enabling it to show eol marks for every line creates visual clutter that distracts me while editing
 
-this plugin was created to address that problem by showing a subtle, single-line marker for eol — just where it matters, at the cursor line
+this plugin was created to address that problem by showing a subtle, single-line marker (using virtual text) for eol — just where it matters, at the cursor line
 
 # setup
 
@@ -22,42 +22,87 @@ this uses default settings, which is equivalent to:
 
 ```
 require("eolmark").setup({
-	mark = "○",
-	excluded_filetypes = {},
-	excluded_buftypes = {},
+	excluded_filetypes = {
+	},
+	excluded_buftypes = {
+	},
+	opts = {
+		virt_text = {{"○", "NonText"}},
+		virt_text_pos = "overlay",
+		hl_mode = "combine",
+		priority = 0,
+	},
 })
-
-vim.api.nvim_set_hl(0, "EolMark", {link = "NonText"})
 ```
 
 ## setup example 2:
 
 ```
 require("eolmark").setup({
-	mark = "$",
+	opts = {
+		virt_text = {{"❤️", "Normal"}},
+	},
 })
 ```
 
-this displays the mark as `$`, leaves everything else as default
+this displays the mark as `❤️` with `Normal` highlight group, leaves everything else as default
+
+the `opts` table is the parameter of `nvim_buf_set_extmark` function, see `:help nvim_buf_set_extmark`
+
+this setup is equivalent to:
+
+```
+require("eolmark").setup({
+	excluded_filetypes = {
+	},
+	excluded_buftypes = {
+	},
+	opts = {
+		virt_text = {{"❤️", "Normal"}},
+		virt_text_pos = "overlay",
+		hl_mode = "combine",
+		priority = 0,
+	},
+})
+```
 
 ## setup example 3:
 
 ```
 require("eolmark").setup({
-	mark = "$",
-	excluded_filetypes = {},
+	excluded_filetypes = {
+		"c",
+		"lua",
+	},
 	excluded_buftypes = {
-		"nofile",
-		"terminal",
+		".+",
 	},
 })
-
-vim.api.nvim_set_hl(0, "EolMark", {link = "LineNr"})
 ```
 
-this displays the mark, but only when the `buftype` is neither `nofile` nor `terminal`
+this displays the mark, but only when:
+1. the `filetype` is neither `c` nor `lua`
+2. the `buftype` does not match lua pattern `.+`, which means the `buftype` must be an empty string
 
-also changes the highlight group of the mark
+this setup is equivalent to:
+
+```
+require("eolmark").setup({
+	excluded_filetypes = {
+		"c",
+		"lua",
+	},
+	excluded_buftypes = {
+		".+",
+	},
+	opts = {
+		virt_text = {{"○", "NonText"}},
+		virt_text_pos = "overlay",
+		hl_mode = "combine",
+		priority = 0,
+	},
+})
+```
 
 ## setup example 4:
 
@@ -69,7 +114,6 @@ if you are using `lazy.nvim`:
 	lazy = false,
 	config = function()
 		require("eolmark").setup()
-		vim.api.nvim_set_hl(0, "EolMark", {link = "NonText"})
 	end,
 }
 ```
