@@ -47,7 +47,7 @@ require("eolmark").setup({
 
 this displays the mark as `❤️` with `Normal` highlight group, leaves everything else as default
 
-the `opts` table is the parameter of `nvim_buf_set_extmark` function, see `:help nvim_buf_set_extmark`
+the `opts` table is the last parameter of `nvim_buf_set_extmark` function, see `:help nvim_buf_set_extmark` for details
 
 this setup is equivalent to:
 
@@ -77,6 +77,9 @@ require("eolmark").setup({
 	excluded_buftypes = {
 		".+",
 	},
+	opts = {
+		virt_text = {{"love and peace", "NonText"}},
+	},
 })
 ```
 
@@ -96,7 +99,7 @@ require("eolmark").setup({
 		".+",
 	},
 	opts = {
-		virt_text = {{"○", "NonText"}},
+		virt_text = {{"love and peace", "NonText"}},
 		virt_text_pos = "overlay",
 		hl_mode = "combine",
 		priority = 0,
