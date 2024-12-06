@@ -66,6 +66,10 @@ M.create_autocmd = function()
 		{
 			group = vim.api.nvim_create_augroup("eolmark0", {clear = true}),
 			callback = function()
+				----------------------------------------------------------------
+				vim.schedule(function()
+				-- https://github.com/neovim/neovim/issues/29419
+				----------------------------------------------------------------
 				if
 					not H.excluded_filetype_p()
 					and
@@ -83,6 +87,9 @@ M.create_autocmd = function()
 							buffer = 0,
 						})
 				end
+				----------------------------------------------------------------
+				end)
+				----------------------------------------------------------------
 			end,
 		})
 end
