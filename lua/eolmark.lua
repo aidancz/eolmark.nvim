@@ -1,7 +1,7 @@
 -- https://github.com/neovim/neovim/issues/29312
 -- https://github.com/echasnovski/mini.nvim/issues/990
 
-M = {}
+local M = {}
 
 -- # setup
 
