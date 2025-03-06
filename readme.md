@@ -22,13 +22,12 @@ this uses default settings, which is equivalent to:
 
 ```
 require("eolmark").setup({
-	excluded_filetypes = {
-	},
-	excluded_buftypes = {
-	},
+	excluded_filetypes = {},
+	excluded_buftypes = {},
 	opts = {
 		virt_text = {{"○", "NonText"}},
 		virt_text_pos = "overlay",
+		right_gravity = false,
 		hl_mode = "combine",
 		priority = 0,
 	},
@@ -48,23 +47,6 @@ require("eolmark").setup({
 this displays the mark as `❤️` with `Normal` highlight group, leaves everything else as default
 
 the `opts` table is the last parameter of `nvim_buf_set_extmark` function, see `:help nvim_buf_set_extmark` for details
-
-this setup is equivalent to:
-
-```
-require("eolmark").setup({
-	excluded_filetypes = {
-	},
-	excluded_buftypes = {
-	},
-	opts = {
-		virt_text = {{"❤️", "Normal"}},
-		virt_text_pos = "overlay",
-		hl_mode = "combine",
-		priority = 0,
-	},
-})
-```
 
 ## setup example 3:
 
@@ -86,26 +68,6 @@ require("eolmark").setup({
 this displays the mark, but only when:
 1. the `filetype` is neither `c` nor `lua`
 2. the `buftype` does not match lua pattern `.+`, which means the `buftype` must be an empty string
-
-this setup is equivalent to:
-
-```
-require("eolmark").setup({
-	excluded_filetypes = {
-		"c",
-		"lua",
-	},
-	excluded_buftypes = {
-		".+",
-	},
-	opts = {
-		virt_text = {{"love and peace", "NonText"}},
-		virt_text_pos = "overlay",
-		hl_mode = "combine",
-		priority = 0,
-	},
-})
-```
 
 ## setup example 4:
 
