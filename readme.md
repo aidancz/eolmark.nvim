@@ -27,7 +27,6 @@ require("eolmark").setup({
 	opts = {
 		virt_text = {{"○", "NonText"}},
 		virt_text_pos = "overlay",
-		right_gravity = false,
 		hl_mode = "combine",
 		priority = 0,
 	},
