@@ -38,12 +38,12 @@ require("eolmark").setup({
 ```
 require("eolmark").setup({
 	opts = {
-		virt_text = {{"❤️", "Normal"}},
+		virt_text = {{"󰮯", "Normal"}},
 	},
 })
 ```
 
-this displays the mark as `❤️` with `Normal` highlight group, leaves everything else as default
+this displays the mark as `󰮯` with `Normal` highlight group, leaves everything else as default
 
 the `opts` table is the last parameter of `nvim_buf_set_extmark` function, see `:help nvim_buf_set_extmark` for details
 
@@ -67,17 +67,3 @@ require("eolmark").setup({
 this displays the mark, but only when:
 1. the `filetype` is neither `c` nor `lua`
 2. the `buftype` does not match lua pattern `.+`, which means the `buftype` must be an empty string
-
-## setup example 4:
-
-if you are using `lazy.nvim`:
-
-```
-{
-	"aidancz/eolmark.nvim",
-	lazy = false,
-	config = function()
-		require("eolmark").setup()
-	end,
-}
-```

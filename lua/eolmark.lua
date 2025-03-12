@@ -86,13 +86,15 @@ M.create_autocmd = function()
 							group = vim.api.nvim_create_augroup("eolmark1", {clear = true}),
 							callback = M.set_mark,
 							buffer = 0,
-						})
+						}
+					)
 				end
 				----------------------------------------------------------------
 				end)
 				----------------------------------------------------------------
 			end,
-		})
+		}
+	)
 end
 
 -- # return
